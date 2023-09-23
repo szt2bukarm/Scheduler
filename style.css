@@ -1,0 +1,451 @@
+:root {
+  --main: 243, 213, 181;
+  --sub: 212, 162, 118;
+  --text: 88, 49, 1;
+
+  --sun-background: orangered;
+  --sun: orange;
+
+  --moon-background: darkblue;
+  --moon: #ddd;
+
+  --color1: 205, 82, 82;
+  --color2: 82, 205, 107;
+  --color3: 186, 109, 207;
+  --color4: 0, 0, 0;
+  --color5: 235, 75, 152;
+  --color6: 255, 105, 31;
+  --color7: 120, 165, 162;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: 0.1s all;
+}
+
+html {
+  overflow: hidden;
+  font-size: 62.5%;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(var(--main)) 30%,
+    rgb(var(--sub)) 70%
+  );
+  background-size: cover;
+  -webkit-text-size-adjust: none;
+}
+
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-title {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 7.2rem;
+  background: -webkit-linear-gradient(rgb(var(--text)), rgb(var(--main)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.556);
+  margin: 2.4rem 0;
+}
+
+.days {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6.2rem;
+}
+
+.day {
+  text-align: center;
+  width: 20rem;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 2.8rem;
+  color: rgb(var(--text));
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.556);
+  padding: 1.5rem 3rem;
+  background-color: rgb(var(--sub));
+  border-radius: 1.2rem;
+  box-shadow: 0px 0px 30px rgb(var(--sub));
+  margin-bottom: 2rem;
+}
+
+.day-row{
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.weekdays {
+  padding: 4rem;
+  min-width: auto;
+  height:80vh;
+}
+
+.add-button {
+  position: relative;
+
+  width: 100%;
+  height: 6.4rem;
+  background-color: rgb(var(--main));
+  border-radius: 2.4rem;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0px 0px 3rem rgba(var(--text), 0.3);
+
+  border: .5rem solid rgb(var(--sub));
+
+  overflow: hidden;
+
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.add-icon {
+  position: absolute;
+  right: -9rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 3.4rem;
+  height: 3.4rem;
+  color: rgb(var(--text));
+  filter: drop-shadow(0px 0px 1rem var(--text));
+  padding: 2rem 3rem 1.7rem 1.7rem;
+  background-color: rgb(var(--sub));
+  border-radius: 50%;
+
+  transition: all 0.3s;
+}
+
+.add-button:hover .add-icon {
+  right: -2rem;
+}
+
+.add-button:hover {
+  scale: 0.95;
+  border-radius: 4rem;
+  border: .2rem solid rgb(var(--sub));
+}
+
+.add-button:hover .text-button {
+  transform: translateX(-2.5rem);
+}
+
+.text-button {
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 2.4rem;
+  transition: all 0.3s;
+  color: rgb(var(--text));
+}
+
+/* activity */
+
+.activity{
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    height: auto;
+    border-radius: 2rem;
+    background-color: red;  
+    box-shadow: 0px .3rem 1rem #97323295;
+    cursor: pointer;
+    transition: all .05s;
+}
+
+.time{
+    font-family: Poppins;
+    color: white;
+    font-size: 1.6rem;
+    width: 7.1rem;
+    border-right: 2px solid white;
+    padding: 0 .9rem 0 1.6rem;
+    justify-self: flex-start;
+}
+
+.activity-desc{
+    font-family: Poppins;
+    color: white;
+    font-size: 1.4rem;
+    max-width: 13.5rem;
+    padding: 1rem;
+    word-wrap: break-word;
+}
+
+.controls{
+  opacity: 0;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.activity:hover .controls{
+  opacity: 1;
+}
+
+.up,.down{
+  border: 0;
+  width: 5rem;
+  height: 4rem;
+  background-color: rgb(var(--main));
+  border: .5rem solid rgb(var(--sub));
+  border-radius: 1.2rem;
+  color: rgb(var(--text));
+  box-shadow: 0px 0px 2rem rgba(0, 0, 0, 0.428);
+  cursor: pointer;
+}
+
+.controls{
+  position: absolute;
+  bottom: -.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* popup */
+
+.popup{
+    z-index:-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.464); 
+
+    transition: all 0.2s;
+}
+
+.hidden{
+    z-index: 0;
+    opacity: 0;
+}
+
+.popup-container{
+    position: relative;
+    height: auto;
+    background-color: rgb(var(--main));
+    border-radius: 2.4rem;
+}
+
+.close{
+    position: absolute;
+    right: -2rem;
+    top: -2rem;
+    color: white;
+    font-family: poppins;
+    font-size: 2.4rem;
+    font-weight: 600;
+    background-color: rgb(185, 54, 54);
+    box-shadow: 0px .2rem 2rem rgba(255, 0, 0, 0.433);
+    padding: 1rem 2rem;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.close:hover{
+  scale: 0.9;
+}
+
+.popup-title{
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 3.6rem;
+    color: rgb(var(--text));
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.556);
+    margin: 2.2rem 4.4rem;
+}
+
+.popup-fields{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4rem;
+    margin-bottom: 2.4rem;
+}
+
+.popup-time-text,.popup-name-text,.popup-desc-text{
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 1.6rem;
+    text-align: center;
+    color: rgb(var(--text));
+    margin-bottom: 2rem;
+}
+
+input{
+    border: 0;
+    padding: 2rem;
+    background-color: rgb(var(--sub));
+    box-shadow: 0px .2rem 2rem rgba(var(--sub),0.7);
+    border-radius: 2.4rem;
+    color: white;
+    font-family: poppins;
+    font-weight: 600;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.name-input{
+    width: 30rem;
+}
+
+.popup-btn{
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 1.6rem;
+    border: .5rem solid rgba(0, 128, 0, 0.36);
+    background-color: lightgreen;
+    box-shadow: 0px .2rem 2rem rgba(var(--sub),0.7);
+    padding: 1.2rem 3rem;
+    border-radius: 5rem;
+    cursor: pointer;
+}
+
+.popup-btn:hover{
+  scale: 0.95;
+}
+
+.popup-delete{
+  border: .5rem solid rgba(128, 0, 0, 0.36);
+  background-color: rgb(238, 144, 144);
+}
+
+.edit-btns{
+  display: flex;
+  gap: 3.2rem;
+}
+
+.colors{
+  display: flex;
+  gap: 2rem;
+  padding-inline: 5rem;
+}
+
+.color{
+  margin-bottom: 2rem;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: .5rem solid white;
+  box-shadow: 0px .2rem 2rem rgba(var(--sub),0.7);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.active-color{
+  border: .5rem solid lightgreen;
+}
+
+.color1{  
+  background-image: linear-gradient(#ff0000,#cd5252);
+}
+.color2{
+  background-image: linear-gradient(rgb(55, 255, 0),#52cd6b);
+}
+.color3{
+  background-image: linear-gradient(rgb(153, 0, 255),#583462);
+}
+.color4{
+  background-image: linear-gradient(rgb(86, 86, 86),rgb(0, 0, 0));
+}
+.color5{
+  background-image: linear-gradient(rgb(235, 75, 152),rgb(189, 59, 122));
+}
+.color6{
+  background-image: linear-gradient(rgb(255, 105, 31),rgb(212, 87, 25));
+}
+.color7{
+  background-image: linear-gradient(rgb(120, 165, 162),rgb(88, 121, 119));
+}
+
+/* color switch */
+
+.mode-switch-wrapper{
+  z-index: 999;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+
+  display: flex;
+  gap: 2.2rem;
+  align-items: center;
+}
+
+
+.mode-switch{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: var(--sun-background);
+  overflow: hidden;
+  box-shadow: 0px 0px 3rem rgba(var(--sub),0.7);
+
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.circle1{
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--sun);
+  border-radius: 5rem;
+
+  transition: all 0.3s;
+}
+
+.circle2{
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--moon-background);
+  border-radius: 50px;
+  left: -2rem;
+  top: -2rem;
+
+  transition: all 0.3s;
+}
+
+.save-image,.clear-table{
+  background-color: rgb(var(--main));
+  border: .5rem solid rgb(var(--sub));
+  color: rgb(var(--text));
+  cursor: pointer;
+}
+
+/* media qeery */
+
+@media (max-width: 1340px) {
+  html {font-size: 55%;}
+}
+
+
+@media (max-width: 1180px) {
+  html {font-size: 52%;}
+}
+@media (max-width: 1110px) {
+  html {font-size: 50%;}
+  .page-title{padding-top: 5rem;}
+}
+
+@media (max-width: 800px) {
+  html {font-size: 35%;}
+  .page-title{padding-top: 8rem;}
+}

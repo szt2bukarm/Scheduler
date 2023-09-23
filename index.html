@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Órarend</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <script defer src="html2canvas.js"></script>
+    <script defer src="script.js"></script>
+    <script defer src="colorSwitch.js"></script>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="mode-switch-wrapper">
+            <div class="mode-switch">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+            </div>
+            <button class="popup-btn save-image">Mentés</button>
+            <button class="popup-btn clear-table">Törlés</button>
+        </div>
+        <div class="popup hidden">
+            <div class="popup-container">
+                <p class="close">X</p>
+                <p class="popup-title">Esemény felvétele</p>
+                <div class="popup-fields">
+                    <div class="popup-time">
+                        <p class="popup-time-text">Időpont: </p>
+                        <input class="time-input" type="time">
+                    </div>
+                    <div class="popup-name">
+                        <p class="popup-name-text">Esemény: </p>
+                        <input class="name-input" type="text">
+                    </div>
+                    <div class="popup-color">
+                        <p class="popup-desc-text">Szín: </p>
+                        <div class="colors">
+                            <div data-color="var(--color1)" class="color1 color active-color"></div>
+                            <div data-color="var(--color2)" class="color2 color"></div>
+                            <div data-color="var(--color3)" class="color3 color"></div>
+                            <div data-color="var(--color4)" class="color4 color"></div>
+                            <div data-color="var(--color5)" class="color5 color"></div>
+                            <div data-color="var(--color6)" class="color6 color"></div>
+                            <div data-color="var(--color7)" class="color7 color"></div>
+                        </div>
+                    </div>
+                    <button class="popup-save popup-btn">Mentés</button>
+                    <div class="edit-btns">
+                        <button class="popup-edit popup-btn">Módosítás</button>
+                        <button class="popup-delete popup-btn">Törlés</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="page-title">Órarend készítő</h2>
+        <div class="weekdays days" data-aos="fade-up">
+            <div class="monday day-row">
+                <p class="day">Hétfő</p>
+                <button class="add-button" data-day="monday">
+                    <p class="text-button">Felvétel</p>
+                    <ion-icon class="add-icon" name="add-outline"></ion-icon>
+                </button>
+                <div data-aos="fade-up" data-aos-delay="100" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color1));box-shadow: 0px .3rem 1rem rgba(var(--color1),0.7);" class="activity">
+                    <p class="time">09:15</p>
+                    <p class="activity-desc">Reggeli értekezlet</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="150" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color6));box-shadow: 0px .3rem 1rem rgba(var(--color6),0.7);"class="activity">
+                    <p class="time">10:30</p>
+                    <p class="activity-desc">Fontos telefonhívás</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color3));box-shadow: 0px .3rem 1rem rgba(var(--color3),0.7);"class="activity">
+                    <p class="time">11:45</p>
+                    <p class="activity-desc">Ebéd szünet</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="250" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color4));box-shadow: 0px .3rem 1rem rgba(var(--color4),0.7);" class="activity">
+                    <p class="time">13:00</p>
+                    <p class="activity-desc">Projekt megbeszélés</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color7));box-shadow: 0px .3rem 1rem rgba(var(--color7),0.7);"class="activity">
+                    <p class="time">15:30</p>
+                    <p class="activity-desc">Ügyféltalálkozó</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tuesday day-row">
+                <p class="day">Kedd</p>
+                <button class="add-button" data-day="tuesday">
+                    <p class="text-button">Felvétel</p>
+                    <ion-icon class="add-icon" name="add-outline"></ion-icon>
+                </button>
+                <div data-aos="fade-up" data-aos-delay="350" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color4));box-shadow: 0px .3rem 1rem rgba(var(--color4),0.7);" class="activity">
+                    <p class="time">08:30</p>
+                    <p class="activity-desc">Reggeli futás</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="400" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color2));box-shadow: 0px .3rem 1rem rgba(var(--color2),0.7);"class="activity">
+                    <p class="time">10:45</p>
+                    <p class="activity-desc">Bevásárlás és kutya sétáltatás</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="450" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color3));box-shadow: 0px .3rem 1rem rgba(var(--color3),0.7);"class="activity">
+                    <p class="time">12:35</p>
+                    <p class="activity-desc">Ebéd szünet</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="500" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color4));box-shadow: 0px .3rem 1rem rgba(var(--color4),0.7);" class="activity">
+                    <p class="time">14:00</p>
+                    <p class="activity-desc">Házimunka és kertészkedés</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="550" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color2));box-shadow: 0px .3rem 1rem rgba(var(--color2),0.7);"class="activity">
+                    <p class="time">17:55</p>
+                    <p class="activity-desc">Találkozás a barátokkal</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+            </div>
+            <div class="wednesday day-row">
+                <p class="day">Szerda</p>
+                <button class="add-button" data-day="wednesday">
+                    <p class="text-button">Felvétel</p>
+                    <ion-icon class="add-icon" name="add-outline"></ion-icon>
+                </button>
+                <div data-aos="fade-up" data-aos-delay="600" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color2));box-shadow: 0px .3rem 1rem rgba(var(--color2),0.7);" class="activity">
+                    <p class="time">07:30</p>
+                    <p class="activity-desc">Reggeli túra a hegyen</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="650" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color5));box-shadow: 0px .3rem 1rem rgba(var(--color5),0.7);"class="activity">
+                    <p class="time">11:45</p>
+                    <p class="activity-desc">Ebéd a túratársakkal</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="700" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color4));box-shadow: 0px .3rem 1rem rgba(var(--color4),0.7);"class="activity">
+                    <p class="time">14:35</p>
+                    <p class="activity-desc">Pihenés és könyv olvasás</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="750" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color3));box-shadow: 0px .3rem 1rem rgba(var(--color3),0.7);" class="activity">
+                    <p class="time">18:00</p>
+                    <p class="activity-desc">Vacsora készítés</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+            </div>
+            <div class="thursday day-row">
+                <p class="day">Csütörtök</p>
+                <button class="add-button" data-day="thursday">
+                    <p class="text-button">Felvétel</p>
+                    <ion-icon class="add-icon" name="add-outline"></ion-icon>
+                </button>
+                <div data-aos="fade-up" data-aos-delay="800" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color4));box-shadow: 0px .3rem 1rem rgba(var(--color4),0.7);" class="activity">
+                    <p class="time">09:00</p>
+                    <p class="activity-desc">Reggeli bevásárlás</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="850" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color1));box-shadow: 0px .3rem 1rem rgba(var(--color1),0.7);" class="activity">
+                    <p class="time">11:00</p>
+                    <p class="activity-desc">Ügyíntézés</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="900" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color6));box-shadow: 0px .3rem 1rem rgba(var(--color6),0.7);" class="activity">
+                    <p class="time">12:00</p>
+                    <p class="activity-desc">Ebéd a családdal</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="950" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color2));box-shadow: 0px .3rem 1rem rgba(var(--color2),0.7);" class="activity">
+                    <p class="time">15:00</p>
+                    <p class="activity-desc">Orvosi időpont</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="1000" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color1));box-shadow: 0px .3rem 1rem rgba(var(--color1),0.7);" class="activity">
+                    <p class="time">19:00</p>
+                    <p class="activity-desc">Esti filmezés</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+            </div>
+            <div class="friday day-row">
+                <p class="day">Péntek</p>
+                <button class="add-button" data-day="friday">
+                    <p class="text-button">Felvétel</p>
+                    <ion-icon class="add-icon" name="add-outline"></ion-icon>
+                </button>
+                <div data-aos="fade-up" data-aos-delay="1050" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color7));box-shadow: 0px .3rem 1rem rgba(var(--color7),0.7);" class="activity">
+                    <p class="time">09:00</p>
+                    <p class="activity-desc">Reggeli megbeszélés</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="1100" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color4));box-shadow: 0px .3rem 1rem rgba(var(--color4),0.7);" class="activity">
+                    <p class="time">11:15</p>
+                    <p class="activity-desc">Projekt ellenőrzés</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="1150" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color1));box-shadow: 0px .3rem 1rem rgba(var(--color1),0.7);" class="activity">
+                    <p class="time">13:45</p>
+                    <p class="activity-desc">Ebéd a projekttársakkal</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="1200" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color5));box-shadow: 0px .3rem 1rem rgba(var(--color5),0.7);" class="activity">
+                    <p class="time">15:30</p>
+                    <p class="activity-desc">Bevásárlás a hétvégére</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="1250" data-aos-once="true" onClick="editSchedule(this)" style="background-color:rgb(var(--color1));box-shadow: 0px .3rem 1rem rgba(var(--color1),0.7);" class="activity">
+                    <p class="time">20:00</p>
+                    <p class="activity-desc">Vacsora a családdal</p>
+                    <div class="controls">
+                        <button class="up" onclick="moveUp(this)">up</button>
+                        <button class="down" onclick="moveDown(this)">down</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
